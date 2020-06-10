@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::paginate(2);
 
         return view('product.index', ['products' => $products]);
     }
@@ -26,7 +26,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('product.create');
     }
 
     /**
@@ -37,7 +37,26 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = new Product;
+
+        $post->name = $request->name;
+        $post->description = $request->description;
+        $post->price = $request->price;
+        $post->category = $request->category;
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+
+            if ($image->isValid()) {
+                $image_name = $image->getClientOriginalName();
+                $upload_path = 'UploadedFile';
+                $image->move($upload_path, $image_name);
+                $post->image = $image_name;
+            }
+        }
+
+        $post->save();
+        return redirect('product');
     }
 
     /**

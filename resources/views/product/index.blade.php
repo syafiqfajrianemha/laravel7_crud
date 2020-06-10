@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<a href="#" class="btn btn-primary mb-3">Add New Product</a>
+<a href="{{ url('product/create') }}" class="btn btn-primary mb-3">Add New Product</a>
 
 <div class="table-responsive">
     <table class="table">
@@ -46,5 +46,9 @@
             @endforelse
         </tbody>
     </table>
+</div>
+
+<div class="row justify-content-center">
+    {{ $products->links() }}
 </div>
 @endsection
