@@ -37,6 +37,14 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required|numeric',
+            'category' => 'required',
+            'image' => 'required|image',
+        ]);
+
         $post = new Product;
 
         $post->name = $request->name;
@@ -56,7 +64,7 @@ class ProductController extends Controller
         }
 
         $post->save();
-        return redirect('product');
+        return redirect('product')->with('message', 'Product has been created');
     }
 
     /**

@@ -3,6 +3,15 @@
 @section('title', 'All Product')
 
 @section('content')
+
+<div id="flash-data" data-flashdata="{{ session('message') }}"></div>
+
+{{-- @if (session('message')) --}}
+    {{-- <div class="alert alert-success">
+        {{ session('message') }}
+    </div> --}}
+{{-- @endif --}}
+
 <div class="row">
     <div class="col-lg-12 text-center my-5">
         <h1>CRUD LARAVEL 7</h1>
@@ -42,7 +51,7 @@
                 </td>
             </tr>
             @empty
-            <td colspan="4">No record found</td>
+            <td colspan="4">Records not found</td>
             @endforelse
         </tbody>
     </table>
