@@ -7,9 +7,9 @@
 <div id="flash-data" data-flashdata="{{ session('message') }}"></div>
 
 {{-- @if (session('message')) --}}
-    {{-- <div class="alert alert-success">
+{{-- <div class="alert alert-success">
         {{ session('message') }}
-    </div> --}}
+</div> --}}
 {{-- @endif --}}
 
 <div class="row">
