@@ -64,7 +64,7 @@ class ProductController extends Controller
         }
 
         $post->save();
-        return redirect('product')->with('message', 'Product has been created');
+        return redirect('products')->with('message', 'Product has been created');
     }
 
     /**
@@ -75,7 +75,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('product.show', ['product' => $product]);
     }
 
     /**

@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 // Product
-Route::get('product', 'ProductController@index');
-Route::get('product/create', 'ProductController@create');
-Route::post('product', 'ProductController@store');
+Route::get('products', 'ProductController@index');
+Route::get('products/create', 'ProductController@create');
+Route::post('products', 'ProductController@store');
+Route::get('products/{product}', 'ProductController@show');

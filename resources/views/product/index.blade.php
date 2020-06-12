@@ -18,7 +18,7 @@
     </div>
 </div>
 
-<a href="{{ url('product/create') }}" class="btn btn-primary mb-3">Add New Product</a>
+<a href="{{ url('products/create') }}" class="btn btn-primary mb-3">Add New Product</a>
 
 <div class="table-responsive">
     <table class="table">
@@ -45,9 +45,9 @@
                 <td>IDR {{ number_format($product->price) }}</td>
                 <td>{{ $product->category }}</td>
                 <td>
-                    <a href="#" class="badge badge-pill badge-primary">detail</a>
-                    <a href="#" class="badge badge-pill badge-success">edit</a>
-                    <a href="#" class="badge badge-pill badge-danger">delete</a>
+                    <a href="{{ url('products/' . $product->id) }}" class="badge badge-pill badge-primary">detail</a>
+                    <button type="submit" class="badge badge-pill badge-success">edit</button>
+                    <button type="submit" class="badge badge-pill badge-danger">delete</button>
                 </td>
             </tr>
             @empty

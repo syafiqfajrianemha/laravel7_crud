@@ -7,7 +7,7 @@
     <div class="col-lg-5">
         <div class="card">
             <div class="card-body">
-                <form action="{{ url('product') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ url('products') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="name">Name</label>
@@ -63,7 +63,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary">Add New</button>
-                    <a href="{{ url('product') }}" class="btn btn-danger">Back</a>
+                    <a href="{{ url('products') }}" class="btn btn-danger">Back</a>
                 </form>
             </div>
         </div>
