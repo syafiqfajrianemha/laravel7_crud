@@ -6,12 +6,6 @@
 
 <div id="flash-data" data-flashdata="{{ session('message') }}"></div>
 
-{{-- @if (session('message')) --}}
-{{-- <div class="alert alert-success">
-        {{ session('message') }}
-</div> --}}
-{{-- @endif --}}
-
 <div class="row">
     <div class="col-lg-12 text-center my-5">
         <h1>CRUD LARAVEL 7</h1>
@@ -47,7 +41,11 @@
                 <td>
                     <a href="{{ url('products/' . $product->id) }}" class="badge badge-pill badge-primary">detail</a>
                     <button type="submit" class="badge badge-pill badge-success">edit</button>
-                    <button type="submit" class="badge badge-pill badge-danger">delete</button>
+                    <form action="{{ url('products/' . $product->id) }}" method="POST" class="d-inline form-delete">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="badge badge-pill badge-danger">delete</button>
+                    </form>
                 </td>
             </tr>
             @empty
