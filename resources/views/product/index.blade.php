@@ -40,7 +40,7 @@
                 <td>{{ $product->category }}</td>
                 <td>
                     <a href="{{ url('products/' . $product->id) }}" class="badge badge-pill badge-primary">detail</a>
-                    <button type="submit" class="badge badge-pill badge-success">edit</button>
+                    <a href="{{ url('products/' . $product->id . '/edit') }}" class="badge badge-pill badge-success">edit</a>
                     <form action="{{ url('products/' . $product->id) }}" method="POST" class="d-inline form-delete">
                         @method('DELETE')
                         @csrf

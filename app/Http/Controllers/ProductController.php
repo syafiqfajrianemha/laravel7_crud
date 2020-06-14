@@ -91,7 +91,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('product.edit', ['product' => $product]);
     }
 
     /**
@@ -103,7 +103,38 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+
+            if (isset($product->image) && file_exists('UploadedFile/' . $product->image)) {
+                unlink('UploadedFile/' . $product->image);
+            }
+
+            if ($image->isValid()) {
+                // has name image
+                $image_name = $image->getClientOriginalName();
+                $image_name = uniqid();
+                $extension = $image->extension();
+                $image_name .= '.' . $extension;
+
+                $upload_path = 'UploadedFile';
+                $image->move($upload_path, $image_name);
+                $request->image = $image_name;
+            }
+        } else {
+            $request->image = $product->image;
+        }
+
+        Product::where('id', $product->id)
+            ->update([
+                'name' => $request->name,
+                'description' => $request->description,
+                'price' => $request->price,
+                'category' => $request->category,
+                'image' => $request->image
+            ]);
+
+        return redirect('products')->with('message', 'Product has been updated');
     }
 
     /**
