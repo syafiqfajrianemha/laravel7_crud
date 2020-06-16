@@ -14,9 +14,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(2);
+        $limit = 2;
+        $total_product = Product::count();
+        $products = Product::paginate($limit);
+        $no = $limit * ($products->currentPage() - 1);
 
-        return view('product.index', ['products' => $products]);
+        return view('product.index', compact('products', 'no', 'total_product'));
     }
 
     /**

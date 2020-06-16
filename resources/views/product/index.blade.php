@@ -30,7 +30,7 @@
         <tbody>
             @forelse ($products as $product)
             <tr>
-                <th scope="row">{{ $loop->iteration }}</th>
+                <th scope="row">{{ ++$no }}</th>
                 <td>
                     <img src="{{ asset('UploadedFile/' . $product->image) }}" alt="img" width="100">
                 </td>
@@ -40,7 +40,8 @@
                 <td>{{ $product->category }}</td>
                 <td>
                     <a href="{{ url('products/' . $product->id) }}" class="badge badge-pill badge-primary">detail</a>
-                    <a href="{{ url('products/' . $product->id . '/edit') }}" class="badge badge-pill badge-success">edit</a>
+                    <a href="{{ url('products/' . $product->id . '/edit') }}"
+                        class="badge badge-pill badge-success">edit</a>
                     <form action="{{ url('products/' . $product->id) }}" method="POST" class="d-inline form-delete">
                         @method('DELETE')
                         @csrf
@@ -55,7 +56,12 @@
     </table>
 </div>
 
-<div class="row justify-content-center">
-    {{ $products->links() }}
+<div class="row">
+    <div class="col-auto mr-auto">
+        <strong>Total Product : {{ $total_product }}</strong>
+    </div>
+    <div class="col-auto">
+        {{ $products->links() }}
+    </div>
 </div>
 @endsection
