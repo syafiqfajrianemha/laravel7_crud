@@ -60,10 +60,7 @@ class ProductController extends Controller
 
             if ($image->isValid()) {
                 // has name image
-                $image_name = $image->getClientOriginalName();
-                $image_name = uniqid();
-                $extension = $image->extension();
-                $image_name .= '.' . $extension;
+                $image_name = uniqid() . '.' . $image->getClientOriginalExtension();
 
                 $upload_path = 'UploadedFile';
                 $image->move($upload_path, $image_name);

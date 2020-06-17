@@ -58,7 +58,9 @@
 
 <div class="row">
     <div class="col-auto mr-auto">
+        @if (!$total_product == 0)
         <strong>Total Product : {{ $total_product }}</strong>
+        @endif
     </div>
     <div class="col-auto">
         {{ $products->links() }}
