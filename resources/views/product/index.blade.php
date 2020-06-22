@@ -6,13 +6,7 @@
 
 <div id="flash-data" data-flashdata="{{ session('message') }}"></div>
 
-<div class="row">
-    <div class="col-lg-12 text-center my-5">
-        <h1>CRUD LARAVEL 7</h1>
-    </div>
-</div>
-
-<a href="{{ url('products/create') }}" class="btn btn-primary mb-3">Add New Product</a>
+<a href="{{ url('products/create') }}" class="btn btn-primary my-3">Add New Product</a>
 
 <div class="table-responsive">
     <table class="table">

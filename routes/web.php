@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'ProductController@index');
+Route::get('/', function () {
+    return view('home');
+});
 
 // Product
 // Route::get('products', 'ProductController@index');

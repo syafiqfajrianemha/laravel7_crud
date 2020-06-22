@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -62,8 +63,7 @@ class ProductController extends Controller
                 // has name image
                 $image_name = uniqid() . '.' . $image->getClientOriginalExtension();
 
-                $upload_path = 'UploadedFile';
-                $image->move($upload_path, $image_name);
+                $image->move('UploadedFile', $image_name);
                 $post->image = $image_name;
             }
         }
@@ -114,19 +114,13 @@ class ProductController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
 
-            if (isset($product->image) && file_exists('UploadedFile/' . $product->image)) {
-                unlink('UploadedFile/' . $product->image);
-            }
+            File::delete('UploadedFile/' . $product->image);
 
             if ($image->isValid()) {
                 // has name image
-                $image_name = $image->getClientOriginalName();
-                $image_name = uniqid();
-                $extension = $image->extension();
-                $image_name .= '.' . $extension;
+                $image_name = uniqid() . '.' . $image->getClientOriginalExtension();
 
-                $upload_path = 'UploadedFile';
-                $image->move($upload_path, $image_name);
+                $image->move('UploadedFile', $image_name);
                 $request->image = $image_name;
             }
         } else {
@@ -153,9 +147,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        if (file_exists('UploadedFile/' . $product->image)) {
-            unlink('UploadedFile/' . $product->image);
-        }
+        File::delete('UploadedFile/' . $product->image);
 
         $product->delete();
         return redirect('products')->with('message', 'Product has been deleted');
