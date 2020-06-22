@@ -38,15 +38,20 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="category">Category</label>
-                        <select class="form-control @error('category') is-invalid @enderror" name="category"
+                        <label for="id_category">Category</label>
+                        <select class="form-control @error('id_category') is-invalid @enderror" name="id_category"
                             id="category">
                             <option selected disabled>Choose...</option>
-                            <option value="T-Shirts" {{ $product->category == "T-Shirts" ? 'selected' : '' }}>T-Shirts
+                            @foreach ($categories as $category) 
+                            <option value="{{ $category->id }}"
+                                @if ($category->id == $product->id_category)
+                                    selected
+                                @endif>
+                                {{ $category->name }}
                             </option>
-                            <option value="Hoods" {{ $product->category == "Hoods" ? 'selected' : '' }}>Hoods</option>
+                            @endforeach
                         </select>
-                        @error('category')
+                        @error('id_category')
                         <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
                     </div>
@@ -71,7 +76,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Add New</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                     <a href="{{ url('products') }}" class="btn btn-danger">Back</a>
                 </form>
             </div>

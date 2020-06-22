@@ -20,7 +20,6 @@ $('.form-delete').on('click', function (e) {
 
     Swal.fire({
         title: 'Are you sure?',
-        text: "The product will be deleted",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

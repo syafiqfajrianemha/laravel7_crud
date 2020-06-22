@@ -31,7 +31,7 @@
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->description }}</td>
                 <td>IDR {{ number_format($product->price) }}</td>
-                <td>{{ $product->category }}</td>
+                <td>{{ $product->categories->name }}</td>
                 <td>
                     <a href="{{ url('products/' . $product->id) }}" class="badge badge-pill badge-primary">detail</a>
                     <a href="{{ url('products/' . $product->id . '/edit') }}"

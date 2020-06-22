@@ -16,7 +16,7 @@
                 <h4>IDR {{ number_format($product->price) }}</h4>
                 <hr>
                 <p class="card-text">{!! nl2br($product->description) !!}</p>
-                <p class="text-muted">Category : {{ $product->category }}</p>
+                <p class="text-muted">Category : {{ $product->categories->name }}</p>
 
                 <a href="{{ url()->previous() }}" class="btn btn-danger">Back</a>
             </div>

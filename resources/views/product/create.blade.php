@@ -37,15 +37,17 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="category">Category</label>
-                        <select class="form-control @error('category') is-invalid @enderror" name="category"
+                        <label for="id_category">Category</label>
+                        <select class="form-control @error('id_category') is-invalid @enderror" name="id_category"
                             id="category">
                             <option selected disabled>Choose...</option>
-                            <option value="T-Shirts" {{ old('category') == "T-Shirts" ? 'selected' : '' }}>T-Shirts
+                            @foreach ($categories as $category)   
+                            <option value="{{ $category->id }}" {{ old('id_category') == $category->id ? 'selected' : '' }}>
+                                {{ $category->name }}
                             </option>
-                            <option value="Hoods" {{ old('category') == "Hoods" ? 'selected' : '' }}>Hoods</option>
+                            @endforeach
                         </select>
-                        @error('category')
+                        @error('id_category')
                         <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
                     </div>

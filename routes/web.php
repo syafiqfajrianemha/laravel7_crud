@@ -17,6 +17,15 @@ Route::get('/', function () {
     return view('home');
 });
 
+// Category
+Route::get('category', 'CategoryController@index');
+Route::get('category/create', 'CategoryController@create');
+Route::get('category/{product}', 'CategoryController@show');
+Route::post('category', 'CategoryController@store');
+Route::delete('category/{product}', 'CategoryController@destroy');
+Route::get('category/{product}/edit', 'CategoryController@edit');
+Route::put('category/{product}', 'CategoryController@update');
+
 // Product
 // Route::get('products', 'ProductController@index');
 // Route::get('products/create', 'ProductController@create');

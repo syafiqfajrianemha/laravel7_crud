@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Category;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $limit = 2;
+        $limit = 5;
         $total_product = Product::count();
         $products = Product::paginate($limit);
         $no = $limit * ($products->currentPage() - 1);
@@ -30,7 +31,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        $categories = Category::all();
+        return view('product.create', ['categories' => $categories]);
     }
 
     /**
@@ -45,7 +47,7 @@ class ProductController extends Controller
             'name' => 'required',
             'description' => 'required',
             'price' => 'required|numeric',
-            'category' => 'required',
+            'id_category' => 'required',
             'image' => 'required|image',
         ]);
 
@@ -54,7 +56,7 @@ class ProductController extends Controller
         $post->name = $request->name;
         $post->description = $request->description;
         $post->price = $request->price;
-        $post->category = $request->category;
+        $post->id_category = $request->id_category;
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -91,7 +93,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('product.edit', ['product' => $product]);
+        $categories = Category::all();
+        return view('product.edit', ['product' => $product, 'categories' => $categories]);
     }
 
     /**
@@ -107,7 +110,7 @@ class ProductController extends Controller
             'name' => 'required',
             'description' => 'required',
             'price' => 'required|numeric',
-            'category' => 'required',
+            'id_category' => 'required',
             'image' => 'image',
         ]);
 
@@ -132,7 +135,7 @@ class ProductController extends Controller
                 'name' => $request->name,
                 'description' => $request->description,
                 'price' => $request->price,
-                'category' => $request->category,
+                'id_category' => $request->id_category,
                 'image' => $request->image
             ]);
 
