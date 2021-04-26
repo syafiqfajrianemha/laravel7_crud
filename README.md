@@ -1,4 +1,4 @@
-# Eloquent ORM Laravel 8
+# Laravel 7 CRUD
 
 ## Features
 1. CRUD ( Create, Read, Update, Delete)
